@@ -15,4 +15,8 @@ public class CategoryService {
     public Category addCategory(String title) {
         return null;
     }
+
+    public Category editCategory(Category category) {
+        return category;
+    }
 }

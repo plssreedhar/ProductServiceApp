@@ -23,6 +23,11 @@ public class CategoryController {
         return categoryService.addCategory(title);
     }
 
+    @PutMapping("/")
+    public Category addCategory(@RequestBody Category category){
+        return categoryService.editCategory(category);
+    }
+
     @DeleteMapping("/{id}")
     public void deleteCategory(@PathVariable("id") Long categoryId) {
         categoryService.deleteCategory(categoryId);
