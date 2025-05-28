@@ -2,12 +2,15 @@ package com.ecommerce.productserviceapp.controllers;
 
 import com.ecommerce.productserviceapp.models.Category;
 import com.ecommerce.productserviceapp.services.CategoryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/categories")
 public class CategoryController {
-    private CategoryService categoryService;
+
+    @Autowired
+    private final CategoryService categoryService;
 
     public CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;
@@ -24,8 +27,8 @@ public class CategoryController {
     }
 
     @PutMapping("/")
-    public Category addCategory(@RequestBody Category category){
-        return categoryService.editCategory(category);
+    public void editCategory(@RequestBody Category category){
+        categoryService.editCategory(category);
     }
 
     @DeleteMapping("/{id}")
