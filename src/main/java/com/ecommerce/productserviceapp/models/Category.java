@@ -1,9 +1,10 @@
 package com.ecommerce.productserviceapp.models;
 
+import jakarta.persistence.Entity;
 import lombok.Data;
 
 @Data
-public class Category {
-    private String id;
+@Entity(name = "categories")
+public class Category extends BaseModel {
     private String title;
 }
