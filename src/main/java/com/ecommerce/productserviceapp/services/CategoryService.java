@@ -1,5 +1,6 @@
 package com.ecommerce.productserviceapp.services;
 
+import com.ecommerce.productserviceapp.exceptions.ValidationException;
 import com.ecommerce.productserviceapp.models.Category;
 import com.ecommerce.productserviceapp.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ public class CategoryService {
     }
 
     public Category getCategory(Long categoryId) {
+        if (categoryId == null || categoryId <= 0) {
+            throw new ValidationException("Invalid category ID: " + categoryId);
+        }
         return categoryRepository.findById(categoryId).orElse(null);
     }
 
