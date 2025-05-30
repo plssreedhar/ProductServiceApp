@@ -1,13 +1,11 @@
 package com.ecommerce.productserviceapp.controllers;
 
+import com.ecommerce.productserviceapp.exceptions.CategoryNotFoundException;
 import com.ecommerce.productserviceapp.models.Product;
-import com.ecommerce.productserviceapp.repositories.ProductRepository;
 import com.ecommerce.productserviceapp.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,4 +25,15 @@ public class ProductController {
     public List<Product> getAllProducts(){
         return productService.getAllProducts();
     }
+
+    @PostMapping()
+    public Product createProduct(@RequestBody Product product) throws CategoryNotFoundException {
+        return productService.createProduct(product);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteProduct(@PathVariable("id") Long productId) {
+        productService.deleteProduct(productId);
+    }
+
 }
